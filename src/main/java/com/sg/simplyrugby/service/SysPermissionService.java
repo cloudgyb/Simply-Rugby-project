@@ -8,13 +8,16 @@ import com.github.pagehelper.PageInfo;
 import com.sg.simplyrugby.common.PageDTO;
 import com.sg.simplyrugby.mapper.SysPermissionMapper;
 import com.sg.simplyrugby.mapper.SysPermissionRoleMapper;
+import com.sg.simplyrugby.model.SysMenu;
 import com.sg.simplyrugby.model.SysPermission;
 import com.sg.simplyrugby.model.SysPermissionRole;
 import com.sg.simplyrugby.util.ConvertUtil;
 import com.sg.simplyrugby.util.SnowflakeIdWorker;
+import com.sg.simplyrugby.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -74,9 +77,53 @@ public class SysPermissionService extends ServiceImpl<SysPermissionMapper, SysPe
 		}
 	}
 
+	/**
+	 * 根据用户id获取用户角色如果用户为null 获取所有权限
+	 * @return
+	 */
+	public List<SysPermission> getall(String userid){
+		if(StringUtils.isEmpty(userid)) {
+			return  sysPermissionMapper.selectList(new LambdaQueryWrapper<SysPermission>().isNotNull(SysPermission::getOrderNum).orderByAsc(SysPermission::getOrderNum));
+		}
+		return  sysPermissionMapper.selectList(new LambdaQueryWrapper<SysPermission>().isNotNull(SysPermission::getOrderNum).orderByAsc(SysPermission::getOrderNum));
+	}
+
+	/**
+	 * 根据用户id查询菜单栏
+	 * @return
+	 */
+	public List<SysMenu>  getSysMenus(String userid){
+		List<SysMenu> treeList = new ArrayList<SysMenu>();
+		List<SysPermission> menuList =  getall(userid);
+		treeList = getSysMenus(menuList,"0");
+		return treeList;
+	}
+
+	/**
+	 * 递归查询权限
+	 * @param treeList
+	 * @param parentId
+	 * @return
+	 */
+	private List<SysMenu> getSysMenus(List<SysPermission> treeList,String parentId){
+		List<SysMenu> SysMenuList = new ArrayList<SysMenu>();
+		if(StringUtils.isNotNull(parentId)&&treeList!=null&&treeList.size()>0){
+			List<SysMenu> childList=null;
+			for (SysPermission tsysPermission : treeList) {
+				if(tsysPermission.getPid().equals(parentId)){
+					if(tsysPermission.getChildCount()!=null&&tsysPermission.getChildCount()>0){
+						childList=getSysMenus(treeList,tsysPermission.getId());
+					}
+					SysMenu sysMenu=new SysMenu(tsysPermission.getId(), tsysPermission.getPid(), tsysPermission.getName(),tsysPermission.getType(),tsysPermission.getIsBlank(),tsysPermission.getIcon(), tsysPermission.getUrl(), childList);
+					SysMenuList.add(sysMenu);
+					childList = null;
+				}
+			}
+		}
 
 
-
+		return SysMenuList;
+	}
 
 	
 	public int insertSelective(SysPermission record) {

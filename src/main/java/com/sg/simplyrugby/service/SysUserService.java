@@ -191,7 +191,11 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
 		//修改用户信息
 		return tsysUserMapper.updateById(record);
 	}
-	
-	
+
+
+	public SysUser queryUserName(String username){
+		List<SysUser> sysUsers = tsysUserMapper.selectList(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUsername, username));
+		return sysUsers.get(0);
+	}
 	
 }

@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.sg.simplyrugby.common.AjaxResult;
 import com.sg.simplyrugby.common.ResuTree;
 import com.sg.simplyrugby.common.ResultTable;
+import com.sg.simplyrugby.conf.V2Config;
 import com.sg.simplyrugby.service.SysPermissionService;
 import com.sg.simplyrugby.service.SysRoleService;
 import com.sg.simplyrugby.service.SysUserService;
@@ -38,6 +39,9 @@ public class BaseController
 	//权限
 	@Autowired
 	public SysPermissionService sysPermissionService;
+
+    @Autowired
+    public V2Config v2Config;
 
 
 
