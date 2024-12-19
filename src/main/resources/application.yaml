@@ -1,0 +1,28 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 8080
+
+# THYMELEAF (ThymeleafAutoConfiguration)
+# 开启模板缓存（默认值： true ）
+spring:
+  thymeleaf:
+    enabled: true
+    cache: false
+    check-template: true
+    content-type: text/html
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.66.11.159:3306/springbootv2?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT
+    username: root
+    password: BDsec2022,,
+
+
+
+
+
