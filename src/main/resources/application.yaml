@@ -21,8 +21,22 @@ spring:
     url: jdbc:mysql://10.66.11.159:3306/springbootv2?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT
     username: root
     password: BDsec2022,,
+  mvc: #静态文件
+    static-path-pattern: /static/**
 
-
+  redis:
+    ssl: false
+    database: 4
+    host: 10.66.11.159
+    port: 6379
+    password: BDsec2022,,
+    timeout: 1000
+    lettuce:
+      pool:
+        max-active: 200
+        max-wait: -1
+        max-idle: 10
+        min-idle: 0
 
 # 项目相关配置
 fuce:
