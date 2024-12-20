@@ -1,14 +1,18 @@
 package com.sg.simplyrugby.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.sg.simplyrugby.model.simply.Coach;
+import com.sg.simplyrugby.dto.PlayerInfoDTO;
 import com.sg.simplyrugby.model.simply.PlayerInfo;
 import com.sg.simplyrugby.service.PlayerInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
+/**
+ * 球员
+ */
 @RestController
 @RequestMapping("/players")
 public class PlayerInfoController {
@@ -18,14 +22,13 @@ public class PlayerInfoController {
     private PlayerInfoService playerInfoService;
 
     @GetMapping("/{id}")
-    public PlayerInfo getPlayerInfo(@PathVariable String id) {
-        return playerInfoService.getById(id);
+    public PlayerInfoDTO getPlayerInfo(@PathVariable String id) {
+        return playerInfoService.getInfo(id);
     }
 
     @PostMapping("/")
-    public boolean createPlayerInfo(@RequestBody PlayerInfo playerInfo) {
-        playerInfo.setId(UUID.randomUUID().toString());
-        return playerInfoService.save(playerInfo);
+    public boolean createPlayerInfo(@RequestBody PlayerInfoDTO playerInfo) {
+        return playerInfoService.savePlayer(playerInfo);
     }
 
     @PutMapping("/{id}")

@@ -8,7 +8,7 @@ public class CoachPlayerRelation {
 
     private String id;
 
-    private Integer coachId;
+    private String coachId;
 
-    private Integer playerId;
+    private String playerId;
 }

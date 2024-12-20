@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+/**
+ * 教练
+ */
 @RestController
 @RequestMapping("/coaches")
 public class CoachController {
