@@ -7,6 +7,9 @@ import com.sg.simplyrugby.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 球队
+ */
 @RestController
 @RequestMapping("/teams")
 public class TeamController {

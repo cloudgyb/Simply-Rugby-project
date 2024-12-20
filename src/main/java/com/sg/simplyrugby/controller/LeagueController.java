@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+
+/**
+ * 联赛
+ */
 @RestController
 @RequestMapping("/leagues")
 public class LeagueController {
