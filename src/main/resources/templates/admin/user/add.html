@@ -27,21 +27,6 @@
                         <input type="text" name="nickname" lay-verify="nickname" autocomplete="off" placeholder="请输入昵称" class="layui-input">
                     </div>
                 </div>
-
-                <div class="layui-form-item">
-                    <label class="layui-form-label">部门</label>
-                    <div class="layui-input-block">
-                        <ul id="selectParent" name="deptId" class="dtree" data-id="0"></ul>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">岗位</label>
-                    <div class="layui-input-block">
-                        <select id="positionId" name="posId">
-                            <option th:each="list : ${sysPositionsList}" th:text="${list.postName}" th:value="${list.id}"></option>
-                        </select>
-                    </div>
-                </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">角色</label>
                     <div class="layui-input-block">
@@ -71,21 +56,7 @@
     layui.use(['form', 'jquery','dtree'], function () {
         let form = layui.form;
         let $ = layui.jquery;
-        let dtree = layui.dtree;
         let MODULE_PATH = rootPath+"/UserController";
-        let DEPAR_PATH=rootPath+"/SysDepartmentController";
-        //部门树
-        dtree.renderSelect({
-            elem: "#selectParent",
-            url: DEPAR_PATH+"/tree",
-            method: 'get',
-            selectInputName: {nodeId: "depId"},
-            skin: "layui",
-            dataFormat: "list",
-            response: {treeId: "id", parentId: "parentId", title: "deptName"},
-            selectInitVal: "1"
-        });
-
         //名称验证
         form.verify({
             username: function(value){
@@ -109,8 +80,6 @@
 
             }
         });
-
-
 
         //保存
         form.on('submit(user-save)', function (data) {

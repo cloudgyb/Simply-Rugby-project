@@ -12,8 +12,8 @@ import java.util.List;
 @Mapper
 public interface SysRoleMapper extends BaseMapper<SysRole> {
 
-    @Select(" select r.id from t_sys_role r\n" +
-            "\t\tLEFT JOIN t_sys_role_user ru ON  r.id=ru.sys_role_id\n" +
-            "\t\twhere ru.sys_user_id=#{userid}")
+    @Select(" select r.id from sys_role r " +
+            " LEFT JOIN sys_role_user ru ON  r.id=ru.sys_role_id " +
+            " where ru.sys_user_id=#{userid}")
     List<String> queryUserRoleId(@Param("userid") String userid);
 }

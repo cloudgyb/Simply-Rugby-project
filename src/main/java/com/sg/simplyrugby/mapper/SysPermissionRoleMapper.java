@@ -11,9 +11,9 @@ import java.util.List;
 
 @Mapper
 public interface SysPermissionRoleMapper extends BaseMapper<SysPermissionRole> {
-    @Select("select perms from t_sys_permission p\n" +
-            "\tleft join t_sys_permission_role pr on p.id=pr.permission_id\n" +
-            "\twhere pr.role_id=#{roleid}")
+    @Select("select perms from sys_permission p " +
+            "left join sys_permission_role pr on p.id=pr.permission_id " +
+            "where pr.role_id=#{roleId}")
     List<String> queryPermsList(@Param("roleId") String roleId);
 
 }

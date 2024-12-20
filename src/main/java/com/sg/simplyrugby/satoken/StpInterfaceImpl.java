@@ -20,9 +20,7 @@ import java.util.List;
  */
 @Component 
 public class StpInterfaceImpl implements StpInterface {
-
-
-
+	@Autowired
 	private SysPermissionRoleMapper sysPermissionRoleMapper;
 	
 	@Autowired
