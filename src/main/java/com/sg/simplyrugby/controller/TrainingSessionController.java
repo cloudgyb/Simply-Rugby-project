@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/trainingSession")
@@ -19,6 +20,7 @@ public class TrainingSessionController {
 
     @PostMapping
     public boolean save(@RequestBody TrainingSession trainingSession) {
+        trainingSession.setId(UUID.randomUUID().toString());
         return trainingSessionService.saveOrUpdate(trainingSession);
     }
 
