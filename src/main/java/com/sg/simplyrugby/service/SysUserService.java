@@ -62,7 +62,7 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> {
             like = new LambdaQueryWrapper<SysUser>().like(SysUser::getUsername, pageDTO.getSearchText());
         }
         List<SysUser> list = tsysUserMapper.selectList(like);
-        PageInfo<SysUser> pageInfo = new PageInfo<SysUser>(list);
+        PageInfo<SysUser> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
 
