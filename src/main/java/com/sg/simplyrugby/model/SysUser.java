@@ -32,11 +32,5 @@ public class SysUser implements Serializable {
 	/** 岗位id **/
 	@ApiModelProperty(value = "岗位id")
 	private String posId;
-	
-	/**部门名称**/
-	private String depName;
-	/**岗位名称**/
-	private String posName;
-
     
 }
