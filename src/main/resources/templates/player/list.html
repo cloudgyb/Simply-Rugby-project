@@ -43,14 +43,17 @@
 </script>
 
 <script type="text/html" id="user-bar">
-    <button sa:hasPermission="system:user:edit" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+    <button sa:hasPermission="system:user:edit" class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i
+            class="layui-icon layui-icon-edit"></i>
     </button>
-    <button sa:hasPermission="system:user:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+    <button sa:hasPermission="system:user:remove" class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i
+            class="layui-icon layui-icon-delete"></i>
     </button>
 </script>
 
 <script type="text/html" id="role-enable">
-    <input type="checkbox" name="enable" value="{{d.roleId}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="role-enable" {{d.enable== '0' ? 'checked' : '' }} >
+    <input type="checkbox" name="enable" value="{{d.roleId}}" lay-skin="switch" lay-text="启用|禁用"
+           lay-filter="role-enable" {{d.enable== '0' ? 'checked' : '' }} >
 </script>
 
 <th:block th:include="include :: footer"/>
@@ -60,11 +63,11 @@
         let form = layui.form;
         let $ = layui.jquery;
 
-        let MODULE_PATH = rootPath+"/players";
+        let MODULE_PATH = rootPath + "/players";
         let cols = [
             [
                 {type: 'checkbox'},
-              /*  {title: 'ID', field: 'id', align: 'center'},*/
+                /*  {title: 'ID', field: 'id', align: 'center'},*/
                 {title: '姓名', field: 'name', align: 'center'},
                 {title: '年龄', field: 'age', align: 'center'},
                 {title: '身高', field: 'height', align: 'center'},
@@ -75,8 +78,8 @@
                 {title: '国籍', field: 'nationality', align: 'center'},
                 /*{title: '出生日期', field: 'birthDate', align: 'center'},*/
                 {title: '职业生涯开始年份', field: 'careerStartYear', align: 'center'},
-               /* {title: '合同到期日期', field: 'contractExpiration', align: 'center'},*/
-                {title: '操作', toolbar: '#user-bar', align: 'center',width: '15%'}
+                /* {title: '合同到期日期', field: 'contractExpiration', align: 'center'},*/
+                {title: '操作', toolbar: '#user-bar', align: 'center', width: '15%'}
             ]
         ]
 
@@ -101,7 +104,7 @@
                 window.remove(obj);
             } else if (obj.event === 'edit') {
                 window.edit(obj);
-            }else if (obj.event === 'editPwd') {
+            } else if (obj.event === 'editPwd') {
                 window.editPwd(obj);
             }
         });
@@ -158,16 +161,16 @@
 
         //删除
         window.remove = function (obj) {
-            layer.confirm('确定要删除该用户', {icon: 3, title: '提示'}, function (index) {
+            layer.confirm('确定要删除该球员？', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
-                    url: MODULE_PATH + "/remove?ids=" + obj.data['id'],
+                    url: MODULE_PATH + "/" + obj.data['id'],
                     dataType: 'json',
                     type: 'delete',
                     success: function (result) {
                         layer.close(loading);
-                        if (result.code==200) {
+                        if (result.code == 200) {
                             layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                                 obj.del();
                             });
@@ -191,16 +194,16 @@
                 ids += data[i].id + ",";
             }
             ids = ids.substr(0, ids.length - 1);
-            layer.confirm('确定要删除这些用户', {icon: 3, title: '提示'}, function (index) {
+            layer.confirm('确定要删除这些球员？', {icon: 3, title: '提示'}, function (index) {
                 layer.close(index);
                 let loading = layer.load();
                 $.ajax({
-                    url: MODULE_PATH + "/remove?ids=" + ids,
+                    url: MODULE_PATH + "/" + ids,
                     dataType: 'json',
                     type: 'delete',
                     success: function (result) {
                         layer.close(loading);
-                        if (result.code==200) {
+                        if (result.code == 200) {
                             layer.msg(result.msg, {icon: 1, time: 1000}, function () {
                                 table.reload('user-table');
                             });
