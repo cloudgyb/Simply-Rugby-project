@@ -1,17 +1,14 @@
 package com.sg.simplyrugby.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sg.simplyrugby.common.AjaxResult;
 import com.sg.simplyrugby.common.PageDTO;
 import com.sg.simplyrugby.common.ResultTable;
-import com.sg.simplyrugby.model.simply.PlayerInfo;
 import com.sg.simplyrugby.model.simply.TrainingSession;
-import com.sg.simplyrugby.model.simply.TrainingSessionService;
+import com.sg.simplyrugby.service.TrainingSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
