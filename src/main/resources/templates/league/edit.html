@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('联赛修改')"/>
+</head>
+<body>
+<form class="layui-form" action="" th:object="${league}">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+                <div class="layui-form-item layui-hide">
+                    <label class="layui-form-label">编号</label>
+                    <div class="layui-input-block">
+                        <input type="text" th:value="*{id}" name="id" autocomplete="off" placeholder="联赛名称"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联赛所在国家</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{name}" type="text" name="name" autocomplete="off"
+                               placeholder="球队名称" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联赛级别</label>
+                    <div class="layui-input-block">
+                        <label>
+                            <select name="level" th:value="*{level}">
+                                <option name="国际性" value="international" th:selected="*{level}=='international'">
+                                    国际性
+                                </option>
+                                <option name="国家性" value="national" th:selected="*{level}=='national'">国家性
+                                </option>
+                                <option name="区域性" value="regional" th:selected="*{level}=='regional'">区域性
+                                </option>
+                                <option name="本地性" value="local" th:selected="*{level}=='local'">本地性</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">运动类型</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{sportType}" type="text" name="sportType" autocomplete="off"
+                               placeholder="运动类型" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联赛标志URL</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{logoUrl}" type="text" name="logoUrl" autocomplete="off"
+                               placeholder="联赛标志URL" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联赛官方网站</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{website}" type="text" name="website" autocomplete="off"
+                               placeholder="联赛官方网站" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">成立年份</label>
+                    <div class="layui-input-block">
+                        <input th:value="*{foundingYear}" type="date" name="foundingYear" autocomplete="off"
+                               placeholder="成立年份" class="layui-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit=""
+                    lay-filter="user-update">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<th:block th:include="include :: footer"/>
+<script>
+    layui.use(['form', 'jquery', 'dtree'], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let MODULE_PATH = rootPath + "/leagues";
+
+        form.on('submit(user-update)', function (data) {
+            $.ajax({
+                url: MODULE_PATH + '/' + data.field.id,
+                data: JSON.stringify(data.field),
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'put',
+                success: function (result) {
+                    if (result.code == 200) {
+                        layer.msg(result.msg, {icon: 1, time: 1000}, function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                            parent.layui.table.reload("user-table");
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+            return false;
+        });
+    })
+</script>
+<script>
+</script>
+</body>
+</html>
