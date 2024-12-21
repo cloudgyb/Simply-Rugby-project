@@ -1,7 +1,10 @@
 package com.sg.simplyrugby.model.simply;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class Team {
@@ -24,7 +27,8 @@ public class Team {
     /**
      * 成立年份
      */
-    private Integer foundationYear;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date foundationYear;
 
     /**
      * 所属联赛ID
