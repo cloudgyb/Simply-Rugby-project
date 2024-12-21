@@ -35,8 +35,8 @@ public class TrainingSessionController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable String id) {
-        return trainingSessionService.removeById(id);
+    public AjaxResult delete(@PathVariable String id) {
+        return trainingSessionService.removeById(id) ?AjaxResult.success() : AjaxResult.error();
     }
 
     @GetMapping

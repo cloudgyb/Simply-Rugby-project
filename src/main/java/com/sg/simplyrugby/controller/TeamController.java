@@ -41,14 +41,14 @@ public class TeamController {
     }
 
     @PutMapping("/{id}")
-    public boolean updateTeam(@PathVariable String id, @RequestBody Team team) {
+    public AjaxResult updateTeam(@PathVariable String id, @RequestBody Team team) {
         team.setId(id);
-        return teamService.updateById(team);
+        return teamService.updateById(team)?AjaxResult.success() : AjaxResult.error();
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteTeam(@PathVariable String id) {
-        return teamService.removeById(id);
+    public AjaxResult deleteTeam(@PathVariable String id) {
+        return teamService.removeById(id)?AjaxResult.success() : AjaxResult.error();
     }
 
     @GetMapping("/page")

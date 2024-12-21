@@ -40,14 +40,17 @@ public class CoachController {
     }
 
     @PutMapping("/{id}")
-    public boolean updateCoach(@PathVariable String id, @RequestBody Coach coach) {
+    public AjaxResult updateCoach(@PathVariable String id, @RequestBody Coach coach) {
         coach.setId(id);
-        return coachService.updateById(coach);
+        boolean b = coachService.updateById(coach);
+        return b ? AjaxResult.success() : AjaxResult.error();
+
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteCoach(@PathVariable String id) {
-        return coachService.removeById(id);
+    public AjaxResult deleteCoach(@PathVariable String id) {
+        boolean b = coachService.removeById(id);
+        return b ? AjaxResult.success() : AjaxResult.error();
     }
 
     // 分页查询示例

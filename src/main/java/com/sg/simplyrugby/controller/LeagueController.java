@@ -41,14 +41,14 @@ public class LeagueController {
     }
 
     @PutMapping("/{id}")
-    public boolean updateLeague(@PathVariable String id, @RequestBody League league) {
+    public AjaxResult updateLeague(@PathVariable String id, @RequestBody League league) {
         league.setId(id);
-        return leagueService.updateById(league);
+        return leagueService.updateById(league) ?AjaxResult.success() : AjaxResult.error();
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteLeague(@PathVariable String id) {
-        return leagueService.removeById(id);
+    public AjaxResult deleteLeague(@PathVariable String id) {
+        return leagueService.removeById(id)?AjaxResult.success() : AjaxResult.error();
     }
 
     // 分页查询示例

@@ -7,7 +7,6 @@ import com.sg.simplyrugby.common.AjaxResult;
 import com.sg.simplyrugby.common.PageDTO;
 import com.sg.simplyrugby.common.ResultTable;
 import com.sg.simplyrugby.dto.PlayerInfoDTO;
-import com.sg.simplyrugby.model.SysUser;
 import com.sg.simplyrugby.model.simply.PlayerInfo;
 import com.sg.simplyrugby.service.PlayerInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
