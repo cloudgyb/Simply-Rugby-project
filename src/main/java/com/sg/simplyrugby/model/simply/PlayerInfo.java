@@ -15,7 +15,7 @@ public class PlayerInfo {
     private BigDecimal height;
     private BigDecimal weight;
     private String position;
-    private Integer teamId;
+    private String teamId;
     private Integer jerseyNumber;
     private String nationality;
     private Date birthDate;
