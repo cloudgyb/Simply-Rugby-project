@@ -15,6 +15,7 @@ import org.springframework.ui.ModelMap;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -37,7 +38,7 @@ public class TeamControllerTest {
         expectedResult.setId("ef3e6b87-2fcf-4b97-a782-ebbd9a25c5f5");
         expectedResult.setName("name");
         expectedResult.setNickname("nickname");
-        expectedResult.setFoundationYear(2020);
+        expectedResult.setFoundationYear(new Date());
         expectedResult.setLeagueId("leagueId");
 
         // Configure TeamService.getById(...).
@@ -45,7 +46,7 @@ public class TeamControllerTest {
         team.setId("ef3e6b87-2fcf-4b97-a782-ebbd9a25c5f5");
         team.setName("name");
         team.setNickname("nickname");
-        team.setFoundationYear(2020);
+        team.setFoundationYear(new Date());
         team.setLeagueId("leagueId");
         when(mockTeamService.getById("id")).thenReturn(team);
 
@@ -63,7 +64,7 @@ public class TeamControllerTest {
         team.setId("ef3e6b87-2fcf-4b97-a782-ebbd9a25c5f5");
         team.setName("name");
         team.setNickname("nickname");
-        team.setFoundationYear(2020);
+        team.setFoundationYear(new Date());
         team.setLeagueId("leagueId");
 
         final AjaxResult expectedResult = new AjaxResult();
@@ -73,7 +74,7 @@ public class TeamControllerTest {
         entity.setId("ef3e6b87-2fcf-4b97-a782-ebbd9a25c5f5");
         entity.setName("name");
         entity.setNickname("nickname");
-        entity.setFoundationYear(2020);
+        entity.setFoundationYear(new Date());
         entity.setLeagueId("leagueId");
         when(mockTeamService.save(entity)).thenReturn(false);
 
@@ -91,7 +92,7 @@ public class TeamControllerTest {
         team.setId("ef3e6b87-2fcf-4b97-a782-ebbd9a25c5f5");
         team.setName("name");
         team.setNickname("nickname");
-        team.setFoundationYear(2020);
+        team.setFoundationYear(new Date());
         team.setLeagueId("leagueId");
 
         final AjaxResult expectedResult = new AjaxResult();
@@ -101,7 +102,7 @@ public class TeamControllerTest {
         entity.setId("ef3e6b87-2fcf-4b97-a782-ebbd9a25c5f5");
         entity.setName("name");
         entity.setNickname("nickname");
-        entity.setFoundationYear(2020);
+        entity.setFoundationYear(new Date());
         entity.setLeagueId("leagueId");
         when(mockTeamService.updateById(entity)).thenReturn(false);
 
@@ -138,7 +139,7 @@ public class TeamControllerTest {
         team.setId("ef3e6b87-2fcf-4b97-a782-ebbd9a25c5f5");
         team.setName("name");
         team.setNickname("nickname");
-        team.setFoundationYear(2020);
+        team.setFoundationYear(new Date());
         team.setLeagueId("leagueId");
         final List<Team> teams = Arrays.asList(team);
         when(mockTeamService.list(any(LambdaQueryWrapper.class))).thenReturn(teams);
@@ -175,7 +176,7 @@ public class TeamControllerTest {
         team.setId("ef3e6b87-2fcf-4b97-a782-ebbd9a25c5f5");
         team.setName("name");
         team.setNickname("nickname");
-        team.setFoundationYear(2020);
+        team.setFoundationYear(new Date());
         team.setLeagueId("leagueId");
         when(mockTeamService.getById("id")).thenReturn(team);
 
