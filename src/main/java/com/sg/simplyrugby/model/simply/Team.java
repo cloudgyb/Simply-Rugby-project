@@ -30,7 +30,7 @@ public class Team {
     /**
      * 所属联赛ID
      */
-    private Integer leagueId;
+    private String leagueId;
 
     /**
      * 主场名称

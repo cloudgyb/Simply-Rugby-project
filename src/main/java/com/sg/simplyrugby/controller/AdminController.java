@@ -167,9 +167,7 @@ public class AdminController extends BaseController {
     @GetMapping("/Loginout")
     @ResponseBody
     public AjaxResult LoginOut(HttpServletRequest request, HttpServletResponse response) {
-        // 在这里执行退出系统前需要清空的数据
-        // ...
-        // 注销
+
         StpUtil.logout();
         return success();
     }
