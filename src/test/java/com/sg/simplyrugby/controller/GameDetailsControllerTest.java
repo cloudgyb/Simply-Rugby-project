@@ -91,7 +91,7 @@ public class GameDetailsControllerTest {
         when(mockGameDetailsService.updateById(entity)).thenReturn(false);
 
         // Run the test
-        final AjaxResult result = gameDetailsControllerUnderTest.update(gameDetails);
+        final AjaxResult result = gameDetailsControllerUnderTest.update("", gameDetails);
 
         // Verify the results
         assertEquals(expectedResult, result);

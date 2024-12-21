@@ -1,8 +1,7 @@
 package com.sg.simplyrugby.model.simply;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-
-
 
 
 import java.util.Date;
@@ -33,6 +32,7 @@ public class GameDetails {
     /**
      * 比赛发生的日期和时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateTime;
 
     /**
