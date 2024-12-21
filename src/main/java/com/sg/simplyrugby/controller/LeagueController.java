@@ -7,10 +7,12 @@ import com.github.pagehelper.PageInfo;
 import com.sg.simplyrugby.common.AjaxResult;
 import com.sg.simplyrugby.common.PageDTO;
 import com.sg.simplyrugby.common.ResultTable;
+import com.sg.simplyrugby.model.simply.GameDetails;
 import com.sg.simplyrugby.model.simply.League;
 import com.sg.simplyrugby.model.simply.PlayerInfo;
 import com.sg.simplyrugby.service.LeagueService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -65,6 +67,13 @@ public class LeagueController {
         );
         PageInfo<League> pageInfo = new PageInfo<>(list);
         return pageTable(list, pageInfo.getTotal());
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") String id, ModelMap mmap) {
+        League byId = leagueService.getById(id);
+        mmap.put("league", byId);
+        return "league/edit";
     }
 
 }

@@ -7,9 +7,11 @@ import com.github.pagehelper.PageInfo;
 import com.sg.simplyrugby.common.AjaxResult;
 import com.sg.simplyrugby.common.PageDTO;
 import com.sg.simplyrugby.common.ResultTable;
+import com.sg.simplyrugby.model.simply.Coach;
 import com.sg.simplyrugby.model.simply.TrainingSession;
 import com.sg.simplyrugby.service.TrainingSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -59,5 +61,13 @@ public class TrainingSessionController {
         );
         PageInfo<TrainingSession> pageInfo = new PageInfo<>(list);
         return pageTable(list, pageInfo.getTotal());
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") String id, ModelMap mmap) {
+        //查询所有角色
+        TrainingSession byId = trainingSessionService.getById(id);
+        mmap.put("trainingSession", byId);
+        return "trainingSession/edit";
     }
 }

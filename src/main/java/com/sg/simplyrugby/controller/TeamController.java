@@ -12,6 +12,7 @@ import com.sg.simplyrugby.model.simply.PlayerInfo;
 import com.sg.simplyrugby.model.simply.Team;
 import com.sg.simplyrugby.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -64,6 +65,14 @@ public class TeamController {
         );
         PageInfo<Team> pageInfo = new PageInfo<>(list);
         return pageTable(list, pageInfo.getTotal());
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") String id, ModelMap mmap) {
+        //查询所有角色
+        Team byId = teamService.getById(id);
+        mmap.put("team", byId);
+        return "team/edit";
     }
 
 }

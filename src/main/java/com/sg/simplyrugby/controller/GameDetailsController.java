@@ -9,10 +9,12 @@ import com.github.pagehelper.PageInfo;
 import com.sg.simplyrugby.common.AjaxResult;
 import com.sg.simplyrugby.common.PageDTO;
 import com.sg.simplyrugby.common.ResultTable;
+import com.sg.simplyrugby.model.simply.Coach;
 import com.sg.simplyrugby.model.simply.GameDetails;
 import com.sg.simplyrugby.model.simply.PlayerInfo;
 import com.sg.simplyrugby.service.GameDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -104,6 +106,13 @@ public class GameDetailsController {
         );
         PageInfo<GameDetails> pageInfo = new PageInfo<>(list);
         return pageTable(list, pageInfo.getTotal());
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") String id, ModelMap mmap) {
+        GameDetails byId = gameDetailsService.getById(id);
+        mmap.put("gameDetails", byId);
+        return "gameDetails/edit";
     }
 }
 

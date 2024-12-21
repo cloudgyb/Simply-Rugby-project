@@ -1,7 +1,6 @@
 package com.sg.simplyrugby.model.simply;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+
 import lombok.Data;
 
 @Data
